@@ -76,3 +76,7 @@ NFT Worlds has various smart contracts used within its ecosystem. Depending on w
 **Ethereum $WRLD Token Contract Address:** [0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9](https://etherscan.io/address/0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9)<br>
 **Polygon $WRLD Token Contract Address:** [0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9](https://polygonscan.com/address/0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9)<br>
 **Polygon Players Contract Address:** [0x285984c5d7a9D37D1805872F051C6b8aFa7418A4](https://polygonscan.com/address/0x285984c5d7a9D37D1805872F051C6b8aFa7418A4)
+
+## ERC20, ERC721 Contract Interactions
+
+We provider contract wrappers for ERC20 and ERC721 (as well as ERC721 variants) smart contracts. You can use these in a similar way to the example above by providing the contract address of the erc20 or erc721 contract you want to interact with while using the associated web3j wrapper.
