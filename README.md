@@ -73,6 +73,6 @@ Web3j ethereumRpc = Web3j.build(new HttpService('https://eth-mainnet.alchemyapi.
 
 NFT Worlds has various smart contracts used within its ecosystem. Depending on what you need, you can find the correct contract addresses for our various contracts on the Ethereum and Polygon network below.
 
-**Ethereum $WRLD Token Contract:** [0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9](https://etherscan.io/address/0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9)<br>
-**Polygon $WRLD Token Contract:** [0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9](https://polygonscan.com/address/0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9)<br>
-**Polygon Players Contract:** [0x285984c5d7a9D37D1805872F051C6b8aFa7418A4](https://polygonscan.com/address/0x285984c5d7a9D37D1805872F051C6b8aFa7418A4)
+**Ethereum $WRLD Token Contract Address:** [0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9](https://etherscan.io/address/0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9)<br>
+**Polygon $WRLD Token Contract Address:** [0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9](https://polygonscan.com/address/0xD5d86FC8d5C0Ea1aC1Ac5Dfab6E529c9967a45E9)<br>
+**Polygon Players Contract Address:** [0x285984c5d7a9D37D1805872F051C6b8aFa7418A4](https://polygonscan.com/address/0x285984c5d7a9D37D1805872F051C6b8aFa7418A4)
