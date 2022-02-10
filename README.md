@@ -79,4 +79,4 @@ NFT Worlds has various smart contracts used within its ecosystem. Depending on w
 
 ## ERC20, ERC721 Contract Interactions
 
-We provider contract wrappers for ERC20 and ERC721 (as well as ERC721 variants) smart contracts. You can use these in a similar way to the example above by providing the contract address of the erc20 or erc721 contract you want to interact with while using the associated web3j wrapper.
+We provider contract wrappers for ERC20 and ERC721 (as well as ERC721 variants) smart contracts. You can use these in a similar way to the example above by providing the contract address of the ERC20 or ERC721 contract you want to interact with while using the associated web3j wrapper.
