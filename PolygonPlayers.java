@@ -1,3 +1,5 @@
+package com.nftworlds.wallet.contracts.wrappers.polygon;
+
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 import java.math.BigInteger;
@@ -27,9 +29,9 @@ import org.web3j.tx.gas.ContractGasProvider;
 
 /**
  * Contract wrapper for NFT Worlds player wallet and state mapping
- * on the Polygon chain. Players contract version 1.4
- * Polygon Mainnet contract address: 0xeA0f9f2015Bd4711a0a4d51815Bd144FDF2eF9c0
- * Polygon Mainnet contract block explorer: https://polygonscan.com/address/0xeA0f9f2015Bd4711a0a4d51815Bd144FDF2eF9c0
+ * on the Polygon chain. Players contract version 1.5
+ * Polygon Mainnet contract address: 0xF405Fb60690395D8d4d047Cc8916Df256270285f
+ * Polygon Mainnet contract block explorer: https://polygonscan.com/address/0xF405Fb60690395D8d4d047Cc8916Df256270285f
  * Auto-generated with web3j version 4.1.1
  */
 
@@ -294,14 +296,14 @@ public class PolygonPlayers extends Contract {
 
     public RemoteFunctionCall<String> getPlayerPrimaryWallet(String _playerUUID) {
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(FUNC_GETPLAYERPRIMARYWALLET,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID.replace("-", ""))),
                 Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}));
         return executeRemoteCallSingleValueReturn(function, String.class);
     }
 
     public RemoteFunctionCall<List> getPlayerSecondaryWallets(String _playerUUID) {
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(FUNC_GETPLAYERSECONDARYWALLETS,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID.replace("-", ""))),
                 Arrays.<TypeReference<?>>asList(new TypeReference<DynamicArray<Address>>() {}));
         return new RemoteFunctionCall<List>(function,
                 new Callable<List>() {
@@ -316,20 +318,24 @@ public class PolygonPlayers extends Contract {
 
     public RemoteFunctionCall<String> getPlayerStateData(String _playerUUID, String _setterAddress, Boolean includeGateway) {
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(FUNC_GETPLAYERSTATEDATA,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID),
-                new org.web3j.abi.datatypes.Address(160, _setterAddress),
-                new org.web3j.abi.datatypes.Bool(includeGateway)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID.replace("-", "")),
+                        new org.web3j.abi.datatypes.Address(160, _setterAddress),
+                        new org.web3j.abi.datatypes.Bool(includeGateway)),
                 Arrays.<TypeReference<?>>asList(new TypeReference<Utf8String>() {}));
         return executeRemoteCallSingleValueReturn(function, String.class);
     }
 
     public RemoteFunctionCall<List> getPlayerStateDataBatch(List<String> _playerUUIDs, String _setterAddress, Boolean includeGateway) {
+        List<String> _playerUUIDsFixed = new ArrayList<>();
+        for (String s : _playerUUIDs) {
+            _playerUUIDsFixed.add(s.replace("-",""));
+        }
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(FUNC_GETPLAYERSTATEDATABATCH,
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.DynamicArray<org.web3j.abi.datatypes.Utf8String>(
-                        org.web3j.abi.datatypes.Utf8String.class,
-                        org.web3j.abi.Utils.typeMap(_playerUUIDs, org.web3j.abi.datatypes.Utf8String.class)),
-                new org.web3j.abi.datatypes.Address(160, _setterAddress),
-                new org.web3j.abi.datatypes.Bool(includeGateway)),
+                                org.web3j.abi.datatypes.Utf8String.class,
+                                org.web3j.abi.Utils.typeMap(_playerUUIDsFixed, org.web3j.abi.datatypes.Utf8String.class)),
+                        new org.web3j.abi.datatypes.Address(160, _setterAddress),
+                        new org.web3j.abi.datatypes.Bool(includeGateway)),
                 Arrays.<TypeReference<?>>asList(new TypeReference<DynamicArray<Utf8String>>() {}));
         return new RemoteFunctionCall<List>(function,
                 new Callable<List>() {
@@ -345,7 +351,7 @@ public class PolygonPlayers extends Contract {
     public RemoteFunctionCall<TransactionReceipt> removePlayerSecondaryWallet(String _playerUUID) {
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(
                 FUNC_REMOVEPLAYERSECONDARYWALLET,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID.replace("-",""))),
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -353,7 +359,7 @@ public class PolygonPlayers extends Contract {
     public RemoteFunctionCall<TransactionReceipt> removePlayerStateData(String _playerUUID) {
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(
                 FUNC_REMOVEPLAYERSTATEDATA,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID.replace("-",""))),
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -361,8 +367,8 @@ public class PolygonPlayers extends Contract {
     public RemoteFunctionCall<TransactionReceipt> setPlayerPrimaryWallet(String _playerUUID, byte[] _signature) {
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(
                 FUNC_SETPLAYERPRIMARYWALLET,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID),
-                new org.web3j.abi.datatypes.DynamicBytes(_signature)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID.replace("-","")),
+                        new org.web3j.abi.datatypes.DynamicBytes(_signature)),
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -370,8 +376,8 @@ public class PolygonPlayers extends Contract {
     public RemoteFunctionCall<TransactionReceipt> setPlayerSecondaryWallet(String _playerUUID, byte[] _signature) {
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(
                 FUNC_SETPLAYERSECONDARYWALLET,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID),
-                new org.web3j.abi.datatypes.DynamicBytes(_signature)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID.replace("-","")),
+                        new org.web3j.abi.datatypes.DynamicBytes(_signature)),
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
@@ -379,21 +385,25 @@ public class PolygonPlayers extends Contract {
     public RemoteFunctionCall<TransactionReceipt> setPlayerStateData(String _playerUUID, String _ipfsHash) {
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(
                 FUNC_SETPLAYERSTATEDATA,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID),
-                new org.web3j.abi.datatypes.Utf8String(_ipfsHash)),
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_playerUUID.replace("-","")),
+                        new org.web3j.abi.datatypes.Utf8String(_ipfsHash)),
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
 
     public RemoteFunctionCall<TransactionReceipt> setPlayerStateDataBatch(List<String> _playerUUIDs, List<String> _ipfsHashes) {
+        List<String> _playerUUIDsFixed = new ArrayList<>();
+        for (String s : _playerUUIDs) {
+            _playerUUIDsFixed.add(s.replace("-",""));
+        }
         final org.web3j.abi.datatypes.Function function = new org.web3j.abi.datatypes.Function(
                 FUNC_SETPLAYERSTATEDATABATCH,
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.DynamicArray<org.web3j.abi.datatypes.Utf8String>(
-                        org.web3j.abi.datatypes.Utf8String.class,
-                        org.web3j.abi.Utils.typeMap(_playerUUIDs, org.web3j.abi.datatypes.Utf8String.class)),
-                new org.web3j.abi.datatypes.DynamicArray<org.web3j.abi.datatypes.Utf8String>(
-                        org.web3j.abi.datatypes.Utf8String.class,
-                        org.web3j.abi.Utils.typeMap(_ipfsHashes, org.web3j.abi.datatypes.Utf8String.class))),
+                                org.web3j.abi.datatypes.Utf8String.class,
+                                org.web3j.abi.Utils.typeMap(_playerUUIDsFixed, org.web3j.abi.datatypes.Utf8String.class)),
+                        new org.web3j.abi.datatypes.DynamicArray<org.web3j.abi.datatypes.Utf8String>(
+                                org.web3j.abi.datatypes.Utf8String.class,
+                                org.web3j.abi.Utils.typeMap(_ipfsHashes, org.web3j.abi.datatypes.Utf8String.class))),
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
